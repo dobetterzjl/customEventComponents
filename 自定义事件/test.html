@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义事件测试</title>
+</head>
+<body>
+	<button id="btn">test</button>
+
+	<script src="event.js"></script>
+	<script>
+		var myEvent = new Event();
+		myEvent.listen('tabs/news/activity/newsdetail', 'open', function(data){
+			console.log(this);
+		});
+
+		/*myEvent.listen('tabs/news/activity/newsdetail', 'open', function(data){
+			console.log(data.sta);
+		});
+
+		myEvent.listen('tabs/news/activity/newsdetail', 'close', function(data){
+			console.log(data.sta);
+		});
+
+		myEvent.listen('tabs/news/activity', 'open', function(data){
+			console.log(data.sta);
+		});*/
+		[
+			{
+				'tabs/news/activity':tabs/news/activity,
+				'open':[fn1,fn2],
+				'close':[fn3]
+			},
+			{
+				'tabs/news/activity/newsdetail':tabs/news/activity/newsdetail,
+				'open':[],
+				'close':[]
+			}
+		]
+		var oBtn = document.getElementById('btn');
+		oBtn.addEventListener('click', function(){
+			myEvent.fire('tabs/news/activity/newsdetail', 'open', {
+				sta: 'xxxx', 
+				stb: {a: 1, b: 2}
+			});
+
+			//myEvent.fire('tabs/news/activity', 'open', {sta: 'yyyy'});
+		}, false);
+	</script>
+</body>
+</html>

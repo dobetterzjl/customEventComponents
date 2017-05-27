@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+  <div id="main-content">
+    <h1 class="main-content-title">门票发放通知</h1>
+    <button id="main-content-info">发布消息</button>
+    <div id="main-content-message"></div>
+    <div class="main-content-sprite"></div>
+  </div>
+  <script src="event.js"></script>
+  <script src="listen.js"></script>
+  <script type="text/javascript">
+    var oButton = document.getElementById('main-content-info');
+    var oMessage = document.getElementById('main-content-message');
+    oButton.addEventListener('click',function(e){
+        var p = document.createElement('p');
+        p.innerHTML="门票开始发放，现在剩余：200张";
+        oMessage.appendChild(p);
+       window.event?window.event.returnValue=false:e.preventDefault();
+       myEvent.fire('tabs/news/activity/newsdetail', 'open', {
+        sta: 'xxxx', 
+        stb: {num: 200}
+      });
+    },false);
+  </script>  
+  </body>
+</html>
